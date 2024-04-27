@@ -11,6 +11,33 @@ import cloud from '../images/cloud.png';
 import notFound from '../images/not-found.png';
 import sky from '../images/sky.png';
 
+import backgroundVideo from '../videos/backgroundVideo.mp4';
+import brokenCloudsVideo from '../videos/brokenClouds.mp4';
+import clearSkyVideo from '../videos/clearSky.mp4';
+import fewCloudsVideo from '../videos/fewClouds.mp4';
+import mistVideo from '../videos/mist.mp4';
+import rainVideo from '../videos/rain.mp4';
+import showerRainVideo from '../videos/showerRain.mp4';
+import thunderstormVideo from '../videos/thunderstorm.mp4';
+import snowVideo from '../videos/snow.mp4';
+import scatteredCloudsVideo from '../videos/scatteredClouds.mp4';
+import overcastCloudsVideo from '../videos/overcastClouds.mp4';
+
+
+
+const weatherBackgrounds = {
+  'broken clouds' :  brokenCloudsVideo,
+  'clear sky' : clearSkyVideo,
+  'few clouds' : fewCloudsVideo,
+  mist : mistVideo,
+  rain : rainVideo,
+  'shower rain' : showerRainVideo,
+  thunderstorm: thunderstormVideo,
+  snow: snowVideo,
+  'scattered clouds': scatteredCloudsVideo,
+  'overcast clouds' : overcastCloudsVideo,
+};
+
 const Weather = () => {
   const [activeTab, setActiveTab] = useState('userWeather');
   const [loading, setLoading] = useState(false);
@@ -20,6 +47,7 @@ const Weather = () => {
   const [countryCode, setCountryCode] = useState(null);
   const [weatherIcon, setWeatherIcon] = useState(null);
   const [grantAccess, setGrantAccess] = useState(false); 
+  const [backgroundVideoKey, setBackgroundVideoKey] = useState(0);
 
 
   useEffect(() => {
@@ -106,6 +134,8 @@ const Weather = () => {
     }
   };
 
+
+
   const renderWeatherInfo = () => {
 
     if (!grantAccess && activeTab !== 'searchWeather') {
@@ -163,7 +193,7 @@ const Weather = () => {
         <div className="weather-icons">
           {renderWeatherIcons()}
         </div>
-        <p style={{fontSize:"25px"}}>{weatherData.main.temp} °C</p>
+        <p style={{fontSize:"35px"}}>{weatherData.main.temp} °C</p>
         <div className="parameter-container">
         <div class="parameter">
           {/* <img src={windImg} alt="wind-image" loading="lazy" /> */}
@@ -194,8 +224,42 @@ const Weather = () => {
     getLocation();
   };
 
+  // const getBackgroundVideo = () => {
+  //   if (weatherData && weatherData.weather && weatherData.weather.length > 0) {
+  //     const weatherDescription = weatherData.weather[0].description;
+  //     return weatherBackgrounds[weatherDescription] || backgroundVideo;
+  //   }
+  //   return backgroundVideo; // Default video if weather description is not found
+  // };
+
+  const getBackgroundVideo = () => {
+    let backgroundVideoSrc = backgroundVideo; // Default video
+
+    if (weatherData && weatherData.weather && weatherData.weather.length > 0) {
+      const weatherDescription = weatherData.weather[0].description;
+      const selectedVideo = weatherBackgrounds[weatherDescription];
+      if (selectedVideo) {
+        backgroundVideoSrc = selectedVideo;
+      } else {
+        console.log(`Video for ${weatherDescription} not found. Using default video.`);
+      }
+    }
+
+    console.log('Selected background video:', backgroundVideoSrc);
+    return backgroundVideoSrc;
+  };
+
+  useEffect(() => {
+    // Force re-render when background video changes
+    setBackgroundVideoKey(prevKey => prevKey + 1);
+  }, [weatherData]);
+
+
   return (
     <div className="container"> 
+    <video key={backgroundVideoKey} autoPlay loop muted playsInline className="background-video">
+        <source src={getBackgroundVideo()} type="video/mp4" />
+      </video>
       <h1>Weather App</h1>
       <div className="tabs">
       <button
