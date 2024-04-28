@@ -5,11 +5,10 @@ import './Weather.css';
 import search from '../images/search.png';
 import location from '../images/location.png';
 import loadingGif from '../images/loading.gif';
-import windImg from '../images/wind.png';
 import humidity from '../images/humidity.png';
 import cloud from '../images/cloud.png';
-import notFound from '../images/not-found.png';
-import sky from '../images/sky.png';
+import notFound from '../images/notFound.jpg';
+import windImg from '../images/windImg.png';
 
 import backgroundVideo from '../videos/backgroundVideo.mp4';
 import brokenCloudsVideo from '../videos/brokenClouds.mp4';
@@ -149,7 +148,7 @@ const Weather = () => {
                 height="80"
                 loading="lazy"/>
           <button className='btn' onClick={grantLocationAccess}>Grant Location Access</button>
-          <p>Please grant location access to see weather information</p>
+          <p style={{fontSize : "20px", fontWeight : "500"}}>Please grant location access to see weather information</p>
         </div>
         </div>
       );
@@ -172,8 +171,8 @@ const Weather = () => {
     if (error && !weatherData) {
       return (
         <div className="notFound">
-          <img width="200" height="200" src={notFound} alt="not-found" />
-          <p>City not found</p>
+          <img width="250" height="200" src={notFound} alt="not-found" />
+          <p >City not found</p>
         </div>
       );
     }
@@ -196,8 +195,7 @@ const Weather = () => {
         <p style={{fontSize:"35px"}}>{weatherData.main.temp} °C</p>
         <div className="parameter-container">
         <div class="parameter">
-          {/* <img src={windImg} alt="wind-image" loading="lazy" /> */}
-          <img src={sky} alt="wind-image" loading="lazy" />
+          <img src={windImg} alt="wind-image" loading="lazy" />
           <p>Windspeed</p>
           <p>{weatherData.wind.speed}</p>
         </div>
@@ -224,16 +222,9 @@ const Weather = () => {
     getLocation();
   };
 
-  // const getBackgroundVideo = () => {
-  //   if (weatherData && weatherData.weather && weatherData.weather.length > 0) {
-  //     const weatherDescription = weatherData.weather[0].description;
-  //     return weatherBackgrounds[weatherDescription] || backgroundVideo;
-  //   }
-  //   return backgroundVideo; // Default video if weather description is not found
-  // };
 
   const getBackgroundVideo = () => {
-    let backgroundVideoSrc = backgroundVideo; // Default video
+    let backgroundVideoSrc = backgroundVideo;
 
     if (weatherData && weatherData.weather && weatherData.weather.length > 0) {
       const weatherDescription = weatherData.weather[0].description;
@@ -250,8 +241,7 @@ const Weather = () => {
   };
 
   useEffect(() => {
-    // Force re-render when background video changes
-    setBackgroundVideoKey(prevKey => prevKey + 1);
+        setBackgroundVideoKey(prevKey => prevKey + 1);
   }, [weatherData]);
 
 

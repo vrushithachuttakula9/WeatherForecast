@@ -1,17 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Merriweather Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
   --colorDark1: #112d4e;
   --colorDark2: #3f72af;
-  --colorLight1: #dbe2ef;
-  --colorLight2: #f9f7f7;
+  --colorLight1: rgba(255, 255, 255, 0.7);
+  --colorLight2: rgba(219, 226, 239, 0.5);
 }
 
 h1 {
@@ -35,7 +37,7 @@ h1 {
   display:flex;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 4rem;
+  margin-top: 3rem;
 }
 
 .weather-container {
@@ -102,11 +104,11 @@ h1 {
 }
 
 .form-container input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--colorLight1);
 }
 
 .form-container input:focus {
-  outline: 3px solid rgba(255, 255, 255, 0.7);
+  outline: 3px solid var(--colorLight1);
 }
 
 .form-container .btn {
@@ -116,7 +118,7 @@ h1 {
   align-items: center;
   justify-content: center;
   border-radius: 100%;
-  margin-bottom: 1pm;
+  margin-bottom: 1px;
 }
 
 .transparent-btn {
@@ -132,12 +134,12 @@ h1 {
 }
 
 .transparent-btn.active {
-  background-color: rgba(219, 226, 239, 0.5);
+  background-color: var(--colorLight2);
   border-radius: 4px;
 }
 
 .weather-info {
-  margin-top: 80px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -169,7 +171,7 @@ h1 {
 .parameter {
   width: 30%;
   max-width: 200px;
-  background-color: rgba(219, 226, 239, 0.5);
+  background-color: var(--colorLight2);
   border-radius: 5px;
   padding: 1rem;
   display: flex;
@@ -189,15 +191,21 @@ h1 {
   text-transform: uppercase;
 }
 .parameter p:last-of-type {
-  font-size: 1rem;
-  font-weight: 200;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .notFound {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+}
+
+.notFound p {
+  margin-top: 10px;
+  color: var(--colorDark1);
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .background-video {
