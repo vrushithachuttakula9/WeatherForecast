@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -67,4 +67,45 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify) -->
+
+
+# Weather App
+
+## Description
+
+### The Weather App is a simple web application built with React that allows users to check the weather for their current location or search for the weather in other cities.
+
+## Features
+
+- ### Display's weather information based on the user's location
+
+- ### Can search for weather by city name
+
+- ### Dynamic background video. Background video changes based on weather conditions
+
+## Technologies Used
+
+- ### React.js
+
+- ### CSS
+
+- ### OpenWeatherMap API
+
+## Installation
+
+1. Clone the repository - git clone repository-url
+2. Navigate to project directory - cd weather-app
+3. Install dependencies - npm install
+4. Set up environment variables:
+    - Create a '.env' file in the project root
+    - Add your OpenWeatherMap API key to the .env file:
+    REACT_APP_WEATHER_API=your-api-key
+5. Start the development server: npm start
+6. Open your browser and visit http://localhost:3000 to view the app.
+
+## Usage
+
+- #### Upon opening the app, users can grant location access to view weather information for their current location.
+
+- #### Users can also search for weather information in other cities by typing the city name in the search bar and pressing enter or clicking the search button.
