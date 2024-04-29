@@ -35,6 +35,8 @@ const weatherBackgrounds = {
   snow: snowVideo,
   'scattered clouds': scatteredCloudsVideo,
   'overcast clouds' : overcastCloudsVideo,
+  'light snow' : snowVideo,
+  'moderate rain' : rainVideo,
 };
 
 const Weather = () => {
@@ -120,7 +122,7 @@ const Weather = () => {
         throw new Error('Failed to fetch weather data');
       }
       const data = await response.json();
-      console.log('Data:', data);
+      
 
       setWeatherData(data);
       setCountryCode(data.sys.country);
@@ -231,12 +233,8 @@ const Weather = () => {
       const selectedVideo = weatherBackgrounds[weatherDescription];
       if (selectedVideo) {
         backgroundVideoSrc = selectedVideo;
-      } else {
-        console.log(`Video for ${weatherDescription} not found. Using default video.`);
       }
     }
-
-    console.log('Selected background video:', backgroundVideoSrc);
     return backgroundVideoSrc;
   };
 
